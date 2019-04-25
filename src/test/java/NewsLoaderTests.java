@@ -25,12 +25,12 @@ public class NewsLoaderTests {
     private ConfigurationLoader configurationLoader;
     private PublishableNews publishableNews;
     private NewsReaderFactory newsReaderFactory;
+
     @Before
-    public void setup(){
+    public void setup() {
         newsLoader = new NewsLoader();
         Configuration configuration = new Configuration();
         IncomingNews incomingNews = new IncomingNews();
-
         incomingNews.add(new IncomingInfo("1", SubsciptionType.A));
         incomingNews.add(new IncomingInfo("2", SubsciptionType.B));
         incomingNews.add(new IncomingInfo("3", SubsciptionType.C));
@@ -40,7 +40,6 @@ public class NewsLoaderTests {
         configurationLoader = mock(ConfigurationLoader.class);
         when(ConfigurationLoader.getInstance()).thenReturn(configurationLoader);
         when(configurationLoader.loadConfiguration()).thenReturn(configuration);
-
         NewsReader newsReader = mock(NewsReader.class);
         when(newsReader.read()).thenReturn(incomingNews);
 
@@ -63,7 +62,6 @@ public class NewsLoaderTests {
 
         Assert.assertEquals(1, publicMessages.size());
         Assert.assertEquals(3, subscribeMessages.size());
-
         Assert.assertEquals("none", publicMessages.get(0));
         Assert.assertEquals("1", subscribeMessages.get(0));
         Assert.assertEquals("2", subscribeMessages.get(1));
